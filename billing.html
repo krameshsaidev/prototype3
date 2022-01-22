@@ -1,0 +1,438 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/hospital.png" type="image/x-icon">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/dashboard.css" rel="stylesheet" />
+    <title>Billing</title>
+    <link href="css/datatables.min.css" rel="stylesheet" />
+    <style>
+        div.dataTables_wrapper div.dataTables_length label {
+            width: 25%;
+        }
+
+        div.dataTables_wrapper div.dataTables_length select {
+            width: 30%;
+        }
+
+        #example_info {
+            text-align: left;
+        }
+
+        .row {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        img {
+            border-radius: 50px;
+        }
+    </style>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css'>
+    <link rel="stylesheet" href="css/bootstrap-sidebar.min.css">
+    <style>
+        .navbar {
+            padding: 15px 10px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
+            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-btn {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .wrapper {
+            width: 100%;
+        }
+
+        #sidebar {
+            min-width: 270px;
+            max-width: 270px;
+            background: #520152;
+            color: #fff;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+            #sidebar .h6 {
+                color: #fff;
+            }
+
+            #sidebar.active {
+                margin-left: -270px;
+            }
+
+                #sidebar.active .custom-menu {
+                    margin-right: -50px;
+                }
+
+            #sidebar h1 {
+                margin-bottom: 20px;
+                font-weight: 700;
+            }
+
+                #sidebar h1 .logo {
+                    color: #fff;
+                }
+
+            #sidebar ul.components {
+                padding: 0;
+            }
+
+            #sidebar ul li {
+                font-size: 16px;
+            }
+
+                #sidebar ul li > ul {
+                    margin-left: 10px;
+                }
+
+                    #sidebar ul li > ul li {
+                        font-size: 14px;
+                    }
+
+                #sidebar ul li a {
+                    padding: 10px 0;
+                    display: block;
+                    color: rgba(255, 255, 255, 0.6);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                    #sidebar ul li a:hover {
+                        color: #fff;
+                    }
+
+                #sidebar ul li.active > a {
+                    background: transparent;
+                    color: #fff;
+                }
+
+        @media (max-width: 991.98px) {
+            #sidebar {
+                margin-left: -270px;
+            }
+
+                #sidebar.active {
+                    margin-left: 0;
+                }
+
+                #sidebar .custom-menu {
+                    margin-right: -60px !important;
+                    top: 10px !important;
+                }
+        }
+
+        #sidebar .custom-menu {
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            margin-right: -20px;
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #sidebar .custom-menu {
+                -webkit-transition: none;
+                -o-transition: none;
+                transition: none;
+            }
+        }
+
+        #sidebar .custom-menu .btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+            #sidebar .custom-menu .btn.btn-primary {
+                background: #520152;
+                border-color: #520152;
+            }
+
+                #sidebar .custom-menu .btn.btn-primary:hover,
+                #sidebar .custom-menu .btn.btn-primary:focus {
+                    background: #520152 !important;
+                    border-color: #520152 !important;
+                }
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 991.98px) {
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+
+        #content {
+            width: 100%;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .btn.btn-primary {
+            background: #494ca2;
+            border-color: #494ca2;
+        }
+
+            .btn.btn-primary:hover,
+            .btn.btn-primary:focus {
+                background: #494ca2 !important;
+                border-color: #494ca2 !important;
+            }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-control {
+            height: 40px !important;
+            background: #fff;
+            color: #000;
+            font-size: 13px;
+            border-radius: 4px;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: transparent;
+        }
+
+            .form-control:focus,
+            .form-control:active {
+                border-color: #000;
+            }
+
+            .form-control::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control::-moz-placeholder {
+                /* Firefox 19+ */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control:-ms-input-placeholder {
+                /* IE 10+ */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control:-moz-placeholder {
+                /* Firefox 18- */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+        .subscribe-form .form-control {
+            background: #5356b1;
+        }
+    </style>
+</head>
+<body class="fixed-sn light-blue-skin">
+
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+
+                <a class="navbar-brand bg-white" href="index.html" style="margin-left:-22px;">
+                    <img src="https://maieden.com/img/logo.png" height="50" alt="mdb logo" />
+                </a>
+                <ul class="list-unstyled components mb-5" id="NavSection">
+                    <li>
+                        <a href="index.html"><span class="fas fa-tachometer-alt fa-fw me-3 mr-3"></span> Main dashboard</a>
+                    </li>
+                    <li>
+                        <a href="Appointments.html"><span class="fas fa-calendar fa-fw me-3 mr-3"></span> Appointments</a>
+                    </li>
+                    <li>
+                        <a href="patients.html"><span class="fas fa-users fa-fw me-3 mr-3"></span> Manage Patients</a>
+                    </li>
+                    <li>
+                        <a href="doctors.html"><span class="fas fa-chart-line fa-fw me-3 mr-3"></span> Manage Doctors</a>
+                    </li>
+                    <li>
+                        <a href="billing.html"><span class="fas fa-money-bill fa-fw me-3 mr-3"></span> Billing</a>
+                    </li>
+                    <li>
+                        <a href="reports.html"><span class="fas fa-chart-bar fa-fw me-3 mr-3"></span> Reports</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" id="navbarDropdownMenuLink-333" style="color:white">
+                            <img src="img/admin.png" height="100" alt="Admin" style="border-radius:50px;" />
+                        </a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="content">
+            <div class="container">
+                <div class="container-fluid mt-4">
+                    <div class="row">
+                        <div class="counter-box mb-4">
+                            <h3 class='mb-3'>Billing Snapshot</h3>
+                            <table id="example" class="table table-responsive-lg display nowrap" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Patient Name</th>
+                                        <th>Room No</th>
+                                        <th>Total Bill</th>
+                                        <th>Pending Bill</th>
+                                        <th>Bill Summary</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/dashboard.js"></script>
+    <script type="text/javascript" src="js/datatables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var stock_data = [
+                {
+                    "name": "Patient 1",
+                    "symbol": "Room 1",
+                    "last": [600, 1800, 1200, 2400, 3600, 4200, 5000]
+                },
+                {
+                    "name": "Patient 2",
+                    "symbol": "Room 2",
+                    "last": [5000, 2500, 7000, 5500, 8000, 8500, 10000]
+                },
+                {
+                    "name": "Patient 3",
+                    "symbol": "Room 3",
+                    "last": [10000, 25000, 20000, 15000, 30000, 45000, 50000]
+                },
+                {
+                    "name": "Patient 4",
+                    "symbol": "Room 4",
+                    "last": [10000, 25000, 50000, 65000, 70000, 85000, 100000]
+                },
+                {
+                    "name": "Patient 5",
+                    "symbol": "Room 5",
+                    "last": [10000, 25000, 20000, 15000, 30000, 45000, 75000]
+                }
+            ];
+
+            let table = $('#example').DataTable({
+                ajax: function (dataSent, callback, settings) {
+                    let data = this.api().ajax.json();
+                    if (data == undefined) {
+                        data = stock_data;
+                    } else {
+                        data = data.data;
+                        for (i = 0; i < data.length; i++) {
+                            data[i].last.push(data[i].last.shift())
+                        }
+                    }
+
+                    callback({ data: data });
+                },
+                paging: false,
+                initComplete: function () {
+                    let api = this.api();
+                    setInterval(function () {
+                        api.ajax.reload();
+                    }, 5000);
+                },
+                drawCallback: function () {
+                    $('.sparkline')
+                        .map(function () {
+                            return $('canvas', this).length ? null : this;
+                        })
+                        .sparkline('html', {
+                            type: 'line',
+                            width: '250px'
+                        })
+                },
+                columns: [
+                    {
+                        data: 'name'
+                    },
+                    {
+                        data: 'symbol'
+                    },
+                    {
+                        data: null,
+                        render: function (data, type, row, meta) {
+                            return row.last[row.last.length - 1].toFixed(2);
+                        }
+                    },
+                    {
+                        data: null,
+                        render: function (data, type, row, meta) {
+                            var val = (row.last[row.last.length - 1] - row.last[row.last.length - 2]).toFixed(2);
+                            var colour = val < 0 ? 'red' : 'green'
+                            return type === 'display' ?
+                                '<span style="color:' + colour + '">' + val + '</span>' :
+                                val;
+                        }
+                    },
+                    {
+                        data: 'last',
+                        render: function (data, type, row, meta) {
+                            return type === 'display' ?
+                                '<span class="sparkline">' + data.toString() + '</span>' :
+                                data;
+                        }
+                    }
+                ]
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,8 +1,577 @@
-<html>
+﻿<html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="img/hospital.png" type="image/x-icon">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/mdb.min.css" rel="stylesheet" />
+    <link href="css/style.min.css" rel="stylesheet" />
+    <link href="css/dashboard.css" rel="stylesheet" />
+    <title>Dashboard</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css'>
+    <link rel="stylesheet" href="css/bootstrap-sidebar.min.css">
+    <style>
+        .navbar {
+            padding: 15px 10px;
+            background: #fff;
+            border: none;
+            border-radius: 0;
+            margin-bottom: 40px;
+            -webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
 
+        .navbar-btn {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            outline: none !important;
+            border: none;
+        }
+
+        .wrapper {
+            width: 100%;
+        }
+
+        #sidebar {
+            min-width: 270px;
+            max-width: 270px;
+            background: #520152;
+            color: #fff;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+            #sidebar .h6 {
+                color: #fff;
+            }
+
+            #sidebar.active {
+                margin-left: -270px;
+            }
+
+                #sidebar.active .custom-menu {
+                    margin-right: -50px;
+                }
+
+            #sidebar h1 {
+                margin-bottom: 20px;
+                font-weight: 700;
+            }
+
+                #sidebar h1 .logo {
+                    color: #fff;
+                }
+
+            #sidebar ul.components {
+                padding: 0;
+            }
+
+            #sidebar ul li {
+                font-size: 16px;
+            }
+
+                #sidebar ul li > ul {
+                    margin-left: 10px;
+                }
+
+                    #sidebar ul li > ul li {
+                        font-size: 14px;
+                    }
+
+                #sidebar ul li a {
+                    padding: 10px 0;
+                    display: block;
+                    color: rgba(255, 255, 255, 0.6);
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                    #sidebar ul li a:hover {
+                        color: #fff;
+                    }
+
+                #sidebar ul li.active > a {
+                    background: transparent;
+                    color: #fff;
+                }
+
+        @media (max-width: 991.98px) {
+            #sidebar {
+                margin-left: -270px;
+            }
+
+                #sidebar.active {
+                    margin-left: 0;
+                }
+
+                #sidebar .custom-menu {
+                    margin-right: -60px !important;
+                    top: 10px !important;
+                }
+        }
+
+        #sidebar .custom-menu {
+            display: inline-block;
+            position: absolute;
+            top: 20px;
+            right: 0;
+            margin-right: -20px;
+            -webkit-transition: 0.3s;
+            -o-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #sidebar .custom-menu {
+                -webkit-transition: none;
+                -o-transition: none;
+                transition: none;
+            }
+        }
+
+        #sidebar .custom-menu .btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+            #sidebar .custom-menu .btn.btn-primary {
+                background: #520152;
+                border-color: #520152;
+            }
+
+                #sidebar .custom-menu .btn.btn-primary:hover,
+                #sidebar .custom-menu .btn.btn-primary:focus {
+                    background: #520152 !important;
+                    border-color: #520152 !important;
+                }
+
+        a[data-toggle="collapse"] {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            display: block;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        @media (max-width: 991.98px) {
+            #sidebarCollapse span {
+                display: none;
+            }
+        }
+
+        #content {
+            width: 100%;
+            padding: 0;
+            min-height: 100vh;
+            -webkit-transition: all 0.3s;
+            -o-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+        .btn.btn-primary {
+            background: #494ca2;
+            border-color: #494ca2;
+        }
+
+            .btn.btn-primary:hover,
+            .btn.btn-primary:focus {
+                background: #494ca2 !important;
+                border-color: #494ca2 !important;
+            }
+
+        .footer p {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .form-control {
+            height: 40px !important;
+            background: #fff;
+            color: #000;
+            font-size: 13px;
+            border-radius: 4px;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+            border: transparent;
+        }
+
+            .form-control:focus,
+            .form-control:active {
+                border-color: #000;
+            }
+
+            .form-control::-webkit-input-placeholder {
+                /* Chrome/Opera/Safari */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control::-moz-placeholder {
+                /* Firefox 19+ */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control:-ms-input-placeholder {
+                /* IE 10+ */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .form-control:-moz-placeholder {
+                /* Firefox 18- */
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+        .subscribe-form .form-control {
+            background: #5356b1;
+        }
+
+    </style>
 </head>
-<body>
-Kura
+<body class="fixed-sn light-blue-skin">
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                    <i class="fa fa-bars"></i>
+                    <span class="sr-only">Toggle Menu</span>
+                </button>
+            </div>
+            <div class="p-4">
+               
+                <a class="navbar-brand bg-white" href="index.html" style="margin-left:-22px;">
+                    <img src="https://maieden.com/img/logo.png" height="50" alt="mdb logo" />
+                </a>
+                <ul class="list-unstyled components mb-5" id="NavSection">
+                    <li >
+                        <a href="index.html"><span class="fas fa-tachometer-alt fa-fw me-3 mr-3"></span> Main dashboard</a>
+                    </li>
+                    <li>
+                        <a href="Appointments.html"><span class="fas fa-calendar fa-fw me-3 mr-3"></span> Appointments</a>
+                    </li>
+                    <li>
+                        <a href="patients.html"><span class="fas fa-users fa-fw me-3 mr-3"></span> Manage Patients</a>
+                    </li>
+                    <li>
+                        <a href="doctors.html"><span class="fas fa-chart-line fa-fw me-3 mr-3"></span> Manage Doctors</a>
+                    </li>
+                    <li>
+                        <a href="billing.html"><span class="fas fa-money-bill fa-fw me-3 mr-3"></span> Billing</a>
+                    </li>
+                    <li>
+                        <a href="reports.html"><span class="fas fa-chart-bar fa-fw me-3 mr-3"></span> Reports</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" id="navbarDropdownMenuLink-333" style="color:white">
+                            <img src="img/admin.png" height="100" alt="Admin" style="border-radius:50px;" />
+                        </a>
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="content" >
+            <div class="container">
+                <div class="row">
+                    <div class="four col-md-3">
+                        <div class="counter-box ">
+                            <img src="img/doctor.png" height="50" alt="Doctor" />
+                            <span class="counter">2147</span>
+                            <p>Doctors</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box">
+                            <img src="img/nurse.png" height="50" alt="Nurse" />
+                            <span class="counter">3275</span>
+                            <p>Nurses</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box">
+                            <img src="img/hospitalisation.png" height="50" alt="Patients" />
+                            <span class="counter">289</span>
+                            <p>Patients</p>
+                        </div>
+                    </div>
+                    <div class="four col-md-3">
+                        <div class="counter-box">
+                            <img src="img/pharmacist.png" height="50" alt="Pharmacist" />
+                            <span class="counter">1563</span>
+                            <p>Pharmacists</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="four col-md-6">
+                        <div class="counter-box ">
+                            <!--<i class="fa fa-thumbs-o-up"></i>-->
+                            Active Patients Count
+                            <canvas id="myChart" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+                    <div class="four col-md-6">
+                        <div class="counter-box">
+                            <!--<i class="fa fa-group"></i>-->
+                            Discharge Patients Count
+                            <canvas id="myChart1" width="400" height="200"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container mt-3" id="patientslist">
+                <div class="row">
+                    <div class="four col-md-12">
+
+                        <div class="counter-box">
+                            Recent Patient Activity
+                            <table class="table table-responsive-lg caption-top">
+                                <caption>
+                                    <a href="#">Show all users</a>
+                                </caption>
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Contact Number</th>
+                                        <th scope="col">Payment Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Patient1</td>
+                                        <td><span class="badge rounded-pill bg-danger">Waiting</span></td>
+                                        <td> 9988776655 </td>
+                                        <td> <span class="badge rounded-pill bg-primary">Advance Paid</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Patient2</td>
+                                        <td><span class="badge rounded-pill bg-success">Discharged</span></td>
+                                        <td> 9988776655 </td>
+                                        <td> <span class="badge rounded-pill bg-success">Fully Paid</span> </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Patient3</td>
+                                        <td><span class="badge rounded-pill bg-danger">Admitted</span></td>
+                                        <td> 9988776655 </td>
+                                        <td> <span class="badge rounded-pill bg-secondary">Partially Paid</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container mt-4" id="recentlyjoined">
+                <div class="counter-box">
+                    <h2>Recently Joined Staff</h2>
+                    <div class="row row-cols-1 row-cols-md-4">
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 1
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 2
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 3
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 4
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 5
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 6
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col mb-3">
+                            <div class="card">
+                                <div class="view overlay">
+                                    <img class="card-img-top" src="img/staff.png"
+                                         alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                        Staff 7
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/dashboard.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('myChart');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: '# of Count',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        const ctx1 = document.getElementById('myChart1');
+        const myChart1 = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                datasets: [{
+                    label: '# of Count',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
